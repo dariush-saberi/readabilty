@@ -17,18 +17,6 @@ model = Model("cefr_predictor/models/xgboost.joblib")
 
 
 main = FastAPI()
-main.mount("/static", StaticFiles(directory="static"), name="static")
-templates = Jinja2Templates(directory="templates")
-
-origins = ["*"]
-
-main.add_middleware(
-    CORSMiddleware,
-    allow_origins=origins,
-    allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
-)
 
 @main.get("/readscore/{text}")
 async def readscore(text):
